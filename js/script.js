@@ -1,8 +1,9 @@
+const GRID_START = 16;
+let bgColor = 'black';
+
 const gridSize = dimensions => {
     return dimensions;
 }
-
-
 
 function drawGrid(lengthWidth) {
     
@@ -24,8 +25,8 @@ function drawGrid(lengthWidth) {
     }
 }
 
-let resetGrid = (event) => {
-    lengthWidth = gridSize(event.target.value);
+let resetGrid = (size) => {
+    lengthWidth = gridSize(size);
     deleteGrid();
     drawGrid(lengthWidth);
     drawListener();
@@ -38,12 +39,24 @@ let deleteGrid = () => {
 }
 
 let slider = document.querySelector(".slider");
-
+let sliderLabel = document.querySelector('.slider-lbl');
 let grid = document.querySelector(".grid");
-let lengthWidth = gridSize(9);
+let lengthWidth = gridSize(GRID_START);
+let mouseDown = false;
 
+// Buttons
+const clearButton = document.querySelector('.clear-btn');
+const eraserButton = document.querySelector('.eraser-btn');
+const drawButton = document.querySelector('.draw-btn');
+clearButton.onclick = () => resetGrid(slider.value);
+eraserButton.onclick = () => bgColor = 'white';
+drawButton.onclick = () => bgColor = 'black';
+
+sliderLabel.textContent = `${slider.value} x ${slider.value}`;
 slider.addEventListener('mouseup', (event) => {
-    resetGrid(event);
+    let gridSize = event.target.value;
+    resetGrid(gridSize);
+    sliderLabel.textContent = `${event.target.value} x ${event.target.value}`;
 });
 
 let drawListener = () => {
@@ -51,8 +64,15 @@ let drawListener = () => {
 
     boxes.forEach(element => {
         element.addEventListener('mouseover', (event) => {
-            event.target.style.background = 'black';
+            if (mouseDown){
+                event.target.style.background = bgColor;
+            }
     });
+    element.addEventListener('mousedown', event => {
+        mouseDown = true
+        event.target.style.background = bgColor;
+    });
+    element.addEventListener('mouseup', () => mouseDown = false);
 });
 }
 

@@ -14,14 +14,25 @@
 
     <div class="control-container">
         <div class="menu">
-            <h2 class="info">Draw stuff by hovering over grid!</h2>
+            <div class="btns">
+                <button class="draw-btn">Draw</button>
+                <button class="eraser-btn">Eraser</button>
+                <button class="clear-btn">Clear</button>
+            </div>
+            <div class="slider-div">
+                <label for="slider" class="slider-lbl"></label>
+                <input name="slider" type="range" min="2" max="64" value="16" class="slider" id="myRange">
+            </div>
         </div>
-        <input type="range" min="2" max="64" value="16" class="slider" id="myRange">
+
       </div>
         <div class="grid">
 
         </div>
    </div> 
+        <div class="footer">
+            Copyright © 2023 Smig Tech | 
+        </div>
    <script src="js/script.js"></script>
 </body>
 </html>
