@@ -1,5 +1,6 @@
 const GRID_START = 16;
-let bgColor = 'black';
+const START_ETCH_COLOR = '#2C3639'
+let bgColor = START_ETCH_COLOR;
 
 const gridSize = dimensions => {
     return dimensions;
@@ -49,8 +50,8 @@ const clearButton = document.querySelector('.clear-btn');
 const eraserButton = document.querySelector('.eraser-btn');
 const drawButton = document.querySelector('.draw-btn');
 clearButton.onclick = () => resetGrid(slider.value);
-eraserButton.onclick = () => bgColor = 'white';
-drawButton.onclick = () => bgColor = 'black';
+eraserButton.onclick = () => bgColor = '#DCD7C9';
+drawButton.onclick = () => bgColor = START_ETCH_COLOR;
 
 sliderLabel.textContent = `${slider.value} x ${slider.value}`;
 slider.addEventListener('mouseup', (event) => {
